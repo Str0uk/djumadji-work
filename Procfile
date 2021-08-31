@@ -1,1 +1,1 @@
-web: gunicorn freelance.wsgi --log-file -
+web: gunicorn freelance.wsgi
