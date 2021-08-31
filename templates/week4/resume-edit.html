@@ -1,0 +1,95 @@
+{% extends 'week3/base.html' %}
+
+{% block content %}
+   <main class="container mt-3 pb-5">
+   {% if pk == resume.id %}
+    <section class="col-12 col-lg-6 offset-lg-3 mt-5 card">
+      <div class="card-body px-3 pb-4">
+        <h1 class="h4 pt-2 pb-3">Мое резюме</h1>
+        <form class="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+          <div class=" form-label-group">
+                <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group pb-2">
+                <label class="mb-2 text-dark" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                  {{form.name}}
+              </div>
+                <div class="form-error">{{ form.name.errors }}</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group pb-2">
+                <label class="mb-2 text-dark" for="{{ form.surname.id_for_label }}">{{ form.surname.label }}</label>
+                  {{form.surname}}
+              </div>
+                <div class="form-error">{{ form.surname.errors }}</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group pb-2">
+                <label class="mb-2 text-dark" for="{{ form.work_status.id_for_label }}">{{ form.work_status.label }}</label>
+                  {{form.work_status}}
+              </div>
+                <div class="form-error">{{ form.work_status.errors }}</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group pb-2">
+                <label class="mb-2 text-dark" for="{{ form.salary.id_for_label }}">{{ form.salary.label }}</label>
+                  {{form.salary}}
+              </div>
+                <div class="form-error">{{ form.salary.errors }}</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group pb-2">
+                <label class="mb-2 text-dark" for="{{ form.specialty.id_for_label }}">{{ form.specialty.label }}</label>
+                  {{form.specialty}}
+              </div>
+                <div class="form-error">{{ form.specialty.errors }}</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group pb-2">
+                <label class="mb-2 text-dark" for="{{ form.qualification.id_for_label }}">{{ form.qualification.label }}</label>
+                  {{form.qualification}}
+              </div>
+                <div class="form-error">{{ form.qualification.errors }}</div>
+            </div>
+          </div>
+          <div class="form-group pb-2">
+            <label class="mb-2 text-dark" for="{{ form.education.id_for_label }}">{{ form.education.label }}</label>
+              {{form.education}}
+          </div>
+              <div class="form-error">{{ form.education.errors }}</div>
+          <div class="form-group pb-2">
+            <label class="mb-2 text-dark" for="{{ form.experience.id_for_label }}">{{ form.experience.label }}</label>
+              {{form.experience}}
+          </div>
+              <div class="form-error">{{ form.experience.errors }}</div>
+          <div class="form-group pb-3">
+            <label class="mb-2 text-dark" for="{{ form.link.id_for_label }}">{{ form.link.label}}</label>
+              {{ form.link }}
+          </div>
+              <div class="form-error">{{ form.link.errors }}</div>
+              <div class="form-error">{{ form.user.errors }}</div>
+         <button type ="submit" class="btn btn-info">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </section>
+   {% else %}
+   <div class="text-center mt-5 b-1">
+            <h1 class="h3 mb-3 font-weight-normal">Джуманджи</h1>
+        <h2 class="h3 mb-3 font-weight-normal">Forbidden</h2>
+
+          </div>
+   {% endif %}
+  </main>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{% endblock %}

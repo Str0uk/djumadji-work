@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block mainmenu %}
+  <meta charset="UTF-8">
+  <title>Джуманджи</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<header class="container mt-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand mr-4" href="{% url 'main' %}">Джуманджи</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav col-10">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'all_vacancies' %}">Вакансии</a>
+          </li>
+
+        </ul>
+              {% if request.user.is_authenticated %}
+                  <ul class="navbar-nav col-2 justify-content-end">
+          <li class="nav-item active">
+            <div class="btn-group">
+              <button type="button" class="btn dropdown-toggle font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.first_name }} {{ user.last_name }}
+              </button>
+              <div class="dropdown-menu dropdown-menu-right mt-3">
+                <a href="{% url 'profile' user.id %}" class="dropdown-item py-2">Профиль</a>
+                  {% if resume_len == 0 %}
+                <a href="{% url 'no_resume' %}" class="dropdown-item py-2">Резюме</a>
+                  {% else  %}
+                <a href="{% url 'resume_edit' resume.id%}" class="dropdown-item py-2">Резюме</a>
+                  {% endif %}
+              {% if mycompany_len == 0 %}
+                <a href="{% url 'my_company' %}" class="dropdown-item py-2">Компания</a>
+                  {% else %}
+                  <a href="{% url 'mycompany_edit' mycompany.id%}" class="dropdown-item py-2">Компания</a>
+                  {% endif %}
+                <a href="{% url 'logout' %}" class="dropdown-item py-2">Выйти</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+              {% else %}
+                <a href="{% url 'login' %}" class="nav-link font-weight-bold">Вход</a>
+              {% endif %}
+      </div>
+    </nav>
+  </header>
+{% endblock mainmenu %}
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends 'week3/base.html' %}
+
+{% block content %}
+
+    <main class="container mt-3 pb-5">
+    <div class="row mt-5">
+      <div class="col-12 col-lg-2">
+        <div class="pl-3 mb-5">
+          <p><a href="#">Назад</a></p>
+        </div>
+      </div>
+      <div class="col-12 col-lg-8">
+        <section class="pl-3">
+          <a href="#"><img src="{{ data_company.company.logo.url }}" width="130" height="80" alt=""></a>
+          <div class="d-flex align-items-baseline align-content-baseline">
+            <h1 class="h2 mt-4 font-weight-bold" >{{ data_company.title}}</h1>
+            <p class="m-0 pl-3">{{ data_company.salary_min}} – {{ data_company.salary_max}} Р</p>
+          </div>
+          <p class="mt-2">{{ data_company.skills}}</p>
+          <p class="text-muted mb-4">{{ data_company.company.name }} ({{ data_company.company.employee_count }} человек), {{ data_company.company.location}}</p>
+          <div style="line-height: 1.8;">
+              <p>{{ data_company.company.description }}</p>
+              {{ data_company.description|safe}}
+          </div>
+          <form class="card mt-4 mb-3" enctype="multipart/form-data" method="post">
+          {% csrf_token %}
+            <div class="card-body mx-3">
+              <p class="h5 mt-3 font-weight-normal">Отозваться на вакансию</p>
+                {% for f in form %}
+                <p> <label class="text-muted" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</p>
+                 <div class="form-error">{{ f.errors }}</div>
+                {% endfor %}
+              <input type="submit" class="btn btn-primary mt-4 mb-2" value="Отозваться">
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{% endblock %}
